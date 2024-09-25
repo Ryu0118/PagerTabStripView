@@ -22,7 +22,7 @@ struct PagerTabItemModifier<SelectionType, NavTabView>: ViewModifier where Selec
             content
                 .onAppear {
                     let frame = geometryProxy.frame(in: .named("PagerViewScrollView"))
-                    index = Int(round(frame.minX / frame.width))
+                    index = Int(round(frame.minX / max(0.01, frame.width)))
                     pagerSettings.createOrUpdate(tag: tag, index: index, view: navTabView())
                 }.onDisappear {
                     pagerSettings.remove(tag: tag)
